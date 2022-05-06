@@ -8,3 +8,5 @@ require (
 )
 
 go 1.11
+
+replace github.com/aws/aws-sdk-go => github.com/PixarV/aws-sdk-go v1.44.8-ritt
