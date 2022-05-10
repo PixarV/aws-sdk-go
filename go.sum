@@ -1,5 +1,3 @@
-github.com/PixarV/aws-sdk-go v1.44.8-ritt h1:epj78wqyVIrdtXq7ABnSe7yAa83pM3O7c+fGlcGbYPc=
-github.com/PixarV/aws-sdk-go v1.44.8-ritt/go.mod h1:SwC2fmoG4W6XdLEii1GvNlOb3zsTV8jsZ4QXFW0YgfI=
 github.com/davecgh/go-spew v1.1.0 h1:ZDRjVQ15GmhC3fiQ8ni8+OwkZQO4DARzQgrnXU1Liz8=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/jmespath/go-jmespath v0.4.0 h1:BEgLn5cpjn8UN1mAw4NjwDrS35OdebyEtFe+9YPoQUg=
