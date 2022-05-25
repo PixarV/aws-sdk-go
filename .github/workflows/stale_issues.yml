@@ -7,6 +7,7 @@ on:
 
 jobs:
   cleanup:
+    if: ${{ false }}
     runs-on: ubuntu-latest
     name: Stale issue job
     steps:
