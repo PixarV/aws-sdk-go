@@ -3,7 +3,6 @@ package query
 import (
 	"encoding/xml"
 	"fmt"
-
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/private/protocol/xml/xmlutil"
@@ -18,6 +17,12 @@ type xmlErrorResponse struct {
 	RequestID string `xml:"RequestId"`
 }
 
+type xmlEC2QueryErrorResponse struct {
+	Code      string `xml:"Errors>Error>Code"`
+	Message   string `xml:"Errors>Error>Message"`
+	RequestID string `xml:"RequestID"`
+}
+
 type xmlResponseError struct {
 	xmlErrorResponse
 }
@@ -25,6 +30,7 @@ type xmlResponseError struct {
 func (e *xmlResponseError) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 	const svcUnavailableTagName = "ServiceUnavailableException"
 	const errorResponseTagName = "ErrorResponse"
+	const errorEC2QueryResponseTagName = "Response"
 
 	switch start.Name.Local {
 	case svcUnavailableTagName:
@@ -34,6 +40,16 @@ func (e *xmlResponseError) UnmarshalXML(d *xml.Decoder, start xml.StartElement) 
 
 	case errorResponseTagName:
 		return d.DecodeElement(&e.xmlErrorResponse, &start)
+
+	case errorEC2QueryResponseTagName:
+		var errResp xmlEC2QueryErrorResponse
+		err := d.DecodeElement(&errResp, &start)
+		if err != nil {
+			e.xmlErrorResponse.Code = errResp.Code
+			e.xmlErrorResponse.Message = errResp.Message
+			e.xmlErrorResponse.RequestID = errResp.RequestID
+		}
+		return err
 
 	default:
 		return fmt.Errorf("unknown error response tag, %v", start)
