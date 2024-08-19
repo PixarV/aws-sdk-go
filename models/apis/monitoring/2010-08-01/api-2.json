@@ -572,10 +572,6 @@
     }
   },
   "shapes":{
-    "AlarmConfigurationUpdatedTimestamp":{
-      "type":"timestamp",
-      "timestampFormat":"unixTimestamp"
-    },
     "AccountId":{
       "type":"string",
       "max":255,
@@ -1650,7 +1646,7 @@
         "AlarmName":{"shape":"AlarmName"},
         "AlarmArn":{"shape":"AlarmArn"},
         "AlarmDescription":{"shape":"AlarmDescription"},
-        "AlarmConfigurationUpdatedTimestamp":{"shape":"AlarmConfigurationUpdatedTimestamp"},
+        "AlarmConfigurationUpdatedTimestamp":{"shape":"UnixTimestamp"},
         "ActionsEnabled":{"shape":"ActionsEnabled"},
         "OKActions":{"shape":"ResourceList"},
         "AlarmActions":{"shape":"ResourceList"},
@@ -2321,6 +2317,10 @@
         "ResourceARN":{"shape":"AmazonResourceName"},
         "TagKeys":{"shape":"TagKeyList"}
       }
+    },
+    "UnixTimestamp":{
+      "type":"timestamp",
+      "timestampFormat":"unixTimestamp"
     },
     "UntagResourceOutput":{
       "type":"structure",
