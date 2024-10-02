@@ -3,6 +3,7 @@ package query
 import (
 	"encoding/xml"
 	"fmt"
+
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/private/protocol/xml/xmlutil"
@@ -43,13 +44,13 @@ func (e *xmlResponseError) UnmarshalXML(d *xml.Decoder, start xml.StartElement) 
 
 	case errorEC2QueryResponseTagName:
 		var errResp xmlEC2QueryErrorResponse
-		err := d.DecodeElement(&errResp, &start)
-		if err != nil {
-			e.xmlErrorResponse.Code = errResp.Code
-			e.xmlErrorResponse.Message = errResp.Message
-			e.xmlErrorResponse.RequestID = errResp.RequestID
+		if err := d.DecodeElement(&errResp, &start); err != nil {
+			return err
 		}
-		return err
+		e.Code = errResp.Code
+		e.Message = errResp.Message
+		e.RequestID = errResp.RequestID
+		return nil
 
 	default:
 		return fmt.Errorf("unknown error response tag, %v", start)
