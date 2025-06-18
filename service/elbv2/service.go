@@ -30,7 +30,7 @@ var initRequest func(*request.Request)
 // Service information constants
 const (
 	ServiceName = "elasticloadbalancing"      // Name of service.
-	EndpointsID = ServiceName                 // ID to lookup a service endpoint with.
+	EndpointsID = "elb"                       // ID to lookup a service endpoint with.
 	ServiceID   = "Elastic Load Balancing v2" // ServiceID is a unique identifier of a specific service.
 )
 
