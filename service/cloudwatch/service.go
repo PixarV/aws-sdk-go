@@ -30,7 +30,7 @@ var initRequest func(*request.Request)
 // Service information constants
 const (
 	ServiceName = "monitoring" // Name of service.
-	EndpointsID = ServiceName  // ID to lookup a service endpoint with.
+	EndpointsID = "cloudwatch" // ID to lookup a service endpoint with.
 	ServiceID   = "CloudWatch" // ServiceID is a unique identifier of a specific service.
 )
 
