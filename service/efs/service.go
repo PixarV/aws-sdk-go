@@ -31,7 +31,7 @@ var initRequest func(*request.Request)
 // Service information constants
 const (
 	ServiceName = "elasticfilesystem" // Name of service.
-	EndpointsID = ServiceName         // ID to lookup a service endpoint with.
+	EndpointsID = "efs"               // ID to lookup a service endpoint with.
 	ServiceID   = "EFS"               // ServiceID is a unique identifier of a specific service.
 )
 
